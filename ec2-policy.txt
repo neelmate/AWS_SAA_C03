@@ -1,5 +1,5 @@
 #ec2-policy for ec2 instance which creates another instance using awscli.
-#this policy will only creates ec2 instance from cli and start/stop/terminate other instances based on ec2 tag only
+#this policy will only create/run ec2 instance from cli and start/stop/terminate other instances based on ec2 tag only
 
 {
     "Version": "2012-10-17",
