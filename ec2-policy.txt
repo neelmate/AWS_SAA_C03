@@ -1,0 +1,41 @@
+#ec2-policy for ec2 instance which creates another instance using awscli.
+#this policy will only creates ec2 instance from cli and start/stop/terminate other instances based on ec2 tag only
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "ec2:RunInstances",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:TerminateInstances",
+                "ec2:StartInstances",
+                "ec2:StopInstances"
+            ],
+            "Resource": "arn:aws:ec2:us-west-2:37123456:instance/*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:ResourceTag/Name": "VIJAY-TEST-INSTANCE"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateTags",
+                "ec2:DescribeInstances",
+                "ec2:DescribeInstanceStatus",
+                "ec2:DescribeAddresses",
+                "ec2:AssociateAddress",
+                "ec2:DisassociateAddress",
+                "ec2:DescribeRegions",
+                "ec2:DescribeAvailabilityZones"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
